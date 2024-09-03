@@ -4,6 +4,7 @@
 
 ## phase01
 -   branch使ってみる
+-   part2
 
 ## chapter3
 
