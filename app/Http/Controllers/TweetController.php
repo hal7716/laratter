@@ -39,7 +39,7 @@ class TweetController extends Controller
      */
     public function show(Tweet $tweet)
     {
-        //
+        return view('tweets.show',compact('tweet'));
     }
 
     /**
@@ -47,7 +47,7 @@ class TweetController extends Controller
      */
     public function edit(Tweet $tweet)
     {
-        //
+        return view('tweets.edit' , compact('tweet'));
     }
 
     /**
@@ -55,7 +55,15 @@ class TweetController extends Controller
      */
     public function update(Request $request, Tweet $tweet)
     {
-        //
+
+        $request->validate([
+        'tweet' => 'required|max:255',
+        ]);
+    
+        $tweet->update($request->only('tweet'));
+    
+        return redirect()->route('tweets.show', $tweet);
+        
     }
 
     /**
@@ -63,6 +71,8 @@ class TweetController extends Controller
      */
     public function destroy(Tweet $tweet)
     {
-        //
+        $tweet->delete();
+
+        return redirect()->route('tweets.index');
     }
 }
